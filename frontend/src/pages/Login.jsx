@@ -3,7 +3,9 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { AlertCircle, Loader, Eye, EyeOff } from 'lucide-react'
 
-export default function Login({ onClose, defaultRole = 'customer' }) {
+
+
+export default function Login({ onClose, defaultRole = 'customer', onSwitchToSignup }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [role, setRole] = useState(defaultRole)
@@ -313,12 +315,10 @@ export default function Login({ onClose, defaultRole = 'customer' }) {
 
           <button
             className="am-btn-secondary"
-            onClick={() => { onClose(); setTimeout(() => {}, 0) }}
+            onClick={() => { onClose(); onSwitchToSignup && onSwitchToSignup(); }}
             type="button"
           >
-            <span onClick={() => { /* trigger signup */ }}>
-              Create your PickNGo account
-            </span>
+            Create your PickNGo account
           </button>
 
           <hr className="am-footer-divider" />
