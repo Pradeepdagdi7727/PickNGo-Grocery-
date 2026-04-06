@@ -10,13 +10,8 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 // 📧 Mail setup
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 
 // ================= FORGOT PASSWORD =================
@@ -52,13 +47,12 @@ router.post("/forgot-password", async (req, res) => {
     }
 
     // 📧 Send email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Password Reset OTP - PICKNGO",
-      html: `<h3>Your OTP is: ${otp}</h3>`
-    });
-
+   await resend.emails.send({
+  from: "onboarding@resend.dev",
+  to: email,
+  subject: "Password Reset OTP - PICKNGO",
+  html: `<h3>Your OTP is: ${otp}</h3>`
+});
     res.json({ message: "OTP sent to email" });
 
   } catch (err) {
