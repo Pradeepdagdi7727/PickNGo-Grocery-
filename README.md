@@ -67,13 +67,16 @@ npm run dev
 
 ## 📁 Project Structure
 
+```
+PickNGo-Grocery-/
 ├── Routers/
-│   ├── Admin_router/    # Admin APIs
-│   └── customer_router/ # Customer APIs
-├── middleware/          # Auth middleware
-├── models/              # MongoDB models
-├── frontend/            # React + Vite app
+│   ├── Admin_router/       # Admin APIs
+│   └── customer_router/    # Customer APIs
+├── middleware/             # Auth middleware
+├── models/                 # MongoDB models
+├── frontend/               # React + Vite app
 └── server.js
+```
 ---
 
 ## 👨‍💻 Author
